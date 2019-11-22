@@ -21,7 +21,13 @@ function sign(user) {
 
 //RUTA PARA SIGNUP // API REST
 router.post("/signup", (req, res, next) => {
-  const { password } = req.body; // deconstuction of password from req.body
+  const { password, username, email } = req.body; // deconstuction of password from req.body
+
+  if (!password || !username || !email) {
+    return res.status(500).json({
+      errormsg: "Todos los campos deben llenarse"
+    });
+  }
 
   //verify password length
   if (password.length <= 7)
@@ -57,6 +63,12 @@ router.post("/signup", (req, res, next) => {
 //RUTA PARA LOGIN // API REST
 router.post("/login", (req, res) => {
   const { password, usernameOrEmail } = req.body; //deconstruccion de password y usernameOrEmail data
+
+  if ((!password, !usernameOrEmail)) {
+    return res
+      .status(500)
+      .json({ errormsg: "Todos los campos deben llenarse" });
+  }
 
   User.find({
     $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }] // find with or operator
