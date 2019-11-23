@@ -21,11 +21,17 @@ function sign(user) {
 
 //RUTA PARA SIGNUP // API REST
 router.post("/signup", (req, res, next) => {
-  const { password, username, email } = req.body; // deconstuction of password from req.body
+  const { password, username, email, confirmPass } = req.body; // deconstuction of password from req.body
 
   if (!password || !username || !email) {
     return res.status(500).json({
       errormsg: "Todos los campos deben llenarse"
+    });
+  }
+
+  if (confirmPass !== password) {
+    return res.status(500).json({
+      errormsg: "El password debe ser el mismo en ambos campos"
     });
   }
 
