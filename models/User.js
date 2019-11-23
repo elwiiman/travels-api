@@ -19,7 +19,9 @@ const userSchema = new Schema(
       required: true
     },
     profilepic: {
-      type: String
+      type: String,
+      default:
+        "https://res.cloudinary.com/elwiiman/image/upload/v1574541695/MexicoParaTodos/user_g9flse.png"
     },
     role: {
       type: String,
