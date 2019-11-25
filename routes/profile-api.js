@@ -10,11 +10,17 @@ router.patch(
   uploader.single("profilepic"),
   (req, res) => {
     const { user } = req;
+    let newUserdata = { ...req.body };
+    if (req.file) {
+      const { secure_url: profilepic } = req.file;
+      newUserdata = { ...newUserdata, profilepic };
+      console.log("mewdata", newUserdata);
+    }
 
-    User.findByIdAndUpdate(user._id, { $set: { ...req.body } }, { new: true })
+    User.findByIdAndUpdate(user._id, { $set: { ...newUserdata } }, { new: true })
       .then(user => {
-        console.log(user);
         delete user._doc.password;
+        console.log(user);
         res.status(200).json({ user });
       })
       .catch(error => {
