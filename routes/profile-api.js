@@ -24,7 +24,9 @@ router.patch(
         res.status(200).json({ user });
       })
       .catch(error => {
-        res.status(500).json({ error });
+        if(error.codeName=="DuplicateKey"){
+        res.status(500).json({ errormsg: "El username que intentas tomar ya ha sido tomado" });
+        }
       });
   }
 );
