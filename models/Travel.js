@@ -15,7 +15,6 @@ const travelSchema = new Schema(
       type: {
         type: String,
         enum: ["autobus", "van"],
-        default: "van",
         required: true
       },
       aviableSeats: {
@@ -38,6 +37,14 @@ const travelSchema = new Schema(
     route: {
       type: [String],
       required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    currency: {
+      type: String,
+      default: "MXN"
     }
   },
   { timestamps: true }
