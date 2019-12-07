@@ -28,7 +28,7 @@ router.get("/", verifyToken, (req, res) => {
 
 router.get("/:id", verifyToken, (req, res) => {
   const { id } = req.params;
-  Travel.findById(id)
+  Travel.findById(id, "-createdAt -updatedAt -currency")
     .then(travel => {
       res.status(200).json({ travel });
     })
