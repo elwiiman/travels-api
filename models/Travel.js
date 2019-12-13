@@ -45,6 +45,14 @@ const travelSchema = new Schema(
     currency: {
       type: String,
       default: "MXN"
+    },
+    outDate: {
+      type: Date,
+      required: true
+    },
+    countryState: {
+      type: String,
+      required: true
     }
   },
   { timestamps: true }

@@ -39,12 +39,19 @@ router.get("/:id", verifyToken, (req, res) => {
 
 //TODO
 router.patch("/:id", verifyToken, uploader.array("photos"), (req, res) => {
-  const { files } = req;
-  const photos = files.map(file => file.secure_url);
-  const updateData = { ...req.body, photos };
+  let updateData = {};
+  if (req.files.length > 0) {
+    const { files } = req;
+    const photos = files.map(file => file.secure_url);
+    updateData = { ...req.body, photos };
+  } else {
+    updateData = { ...req.body };
+  }
+
+  console.log(updateData);
 
   const { id } = req.params;
-  console.log(req.body);
+
   Travel.findByIdAndUpdate(id, { $set: { ...updateData } }, { new: true })
     .then(travel => {
       res.status(200).json({ travel });
