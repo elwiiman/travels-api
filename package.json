@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "dev": "DEBUG=travels-api:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
-    "deploy": "git push heroku travelEndPoints"
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
