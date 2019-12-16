@@ -59,9 +59,11 @@ app.locals.title = "Express - Generated with IronGenerator";
 const auth = require("./routes/auth");
 const profile = require("./routes/profile-api");
 const travel = require("./routes/travel");
+const reservation = require("./routes/reservation");
 app.use("/api", auth);
 app.use("/api/profile", profile);
 app.use("/api/travel", travel);
+app.use("/api/reservation", reservation);
 
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));

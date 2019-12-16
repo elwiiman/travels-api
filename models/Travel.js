@@ -14,7 +14,7 @@ const travelSchema = new Schema(
     transport: {
       type: {
         type: String,
-        enum: ["autobus", "van"],
+        enum: ["Autobus", "Van"],
         required: true
       },
       aviableSeats: {
