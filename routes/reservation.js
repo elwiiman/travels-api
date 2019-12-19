@@ -14,4 +14,17 @@ router.post("/", verifyToken, (req, res) => {
     });
 });
 
+router.get("/:id", verifyToken, (req, res) => {
+  const { id } = req.params;
+
+  Reservation.find({ owner: id })
+    .populate({ path: "travel", select: "title outDate price" })
+    .then(reservation => {
+      res.status(200).json({ reservation });
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
+
 module.exports = router;
